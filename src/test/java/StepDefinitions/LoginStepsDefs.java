@@ -59,7 +59,6 @@ public class LoginStepsDefs extends Constants {
             test.pass("Login successful!");
         }
         extent.flush();
-        Constants.getDriver().quit();
     }
 
 }

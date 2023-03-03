@@ -1,4 +1,4 @@
-
+@Booking
 Feature:Booking
   A feature to book the hotel
 
@@ -8,6 +8,7 @@ Feature:Booking
     And a user enter "AkinAfrika" and "0G5C0D"
     And a user clicks the login button
     Then a user has login successfully
+
 
   Scenario Outline: Book Hotel successfully
     Given a user fill in the booking form

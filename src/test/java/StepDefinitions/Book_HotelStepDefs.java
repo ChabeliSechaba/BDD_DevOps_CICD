@@ -121,6 +121,5 @@ public class Book_HotelStepDefs {
         }
         extent.flush();
         System.out.println(Constants.getDriver().findElement(By.id("order_no")).getText());
-        Constants.getDriver().quit();
     }
 }

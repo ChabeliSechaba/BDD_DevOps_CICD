@@ -1,7 +1,7 @@
-
+@Login
 Feature: Login
   A feature to test a login to a application
-  @Login
+
   Scenario Outline: Login successful
     Given a user is on the home page
     When  a user navigates to the Login page using "<URL>"

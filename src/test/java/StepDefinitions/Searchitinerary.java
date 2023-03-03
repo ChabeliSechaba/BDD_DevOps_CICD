@@ -20,7 +20,7 @@ public class Searchitinerary {
         ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\SearchItinerary.html");
         extent = new ExtentReports();
         extent.attachReporter(spark);
-        test = extent.createTest("Book_hotel");
+        test = extent.createTest("Search_Itinerary");
 
         Actions a = new Actions(Constants.getDriver());
         WebElement ordNum = Constants.getDriver().findElement(By.id("order_no"));
