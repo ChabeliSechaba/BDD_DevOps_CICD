@@ -87,6 +87,7 @@
             <artifactId>chromedriver</artifactId>
             <version>0.1.2</version>
             <scope>import</scope>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>de.bmiag.tapir</groupId>
