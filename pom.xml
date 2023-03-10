@@ -86,7 +86,7 @@
             <groupId>io.github.qsy7.java.modules.browser.drivers</groupId>
             <artifactId>chromedriver</artifactId>
             <version>0.1.2</version>
-            <scope>import</scope>
+            <scope>provided</scope>
             <type>pom</type>
         </dependency>
         <dependency>
@@ -133,6 +133,14 @@
             <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>5.7.5</version>
+        </dependency>
+
+
     </dependencies>
 
 

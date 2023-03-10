@@ -16,8 +16,8 @@ Feature:Booking
     Then the hotel was booked successfully
 
     Examples:
-      |firstname| lastname| bill-address| card-number| cvv-number|
-      | Mister  | Alibaba |  1236 Alostro Street, Tshwane, Pitori, 0001  | 1245451214549126  |  124 |
-
+      | firstname | lastname | bill-address                                           | card-number      | cvv-number |
+      | Mister    | Alibaba  | 1236 Alostro Street, Tshwane, Pitori, 0001             | 1245451214549126 | 124        |
+      | Jackie    | Chan     | 322 Is_not_make_sure Street, Orlando West, Sotra, 1632 | 12454512145      | 127        |
 
 

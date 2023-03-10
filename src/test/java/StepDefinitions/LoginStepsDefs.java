@@ -20,7 +20,7 @@ public class LoginStepsDefs extends Constants {
         // Invoke the browser and hit the url
         initializeWebDriver();
         getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        getDriver().manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
         getDriver().manage().window().maximize();
         ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\Login.html");
         extent = new ExtentReports();

@@ -5,11 +5,13 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Searchitinerary {
     ExtentReports extent;
@@ -45,8 +47,10 @@ public class Searchitinerary {
     }
 
     @Then("the search is successful")
-    public void theSearchIsSuccessful() {
+    public void theSearchIsSuccessful() throws IOException {
         if(!Constants.getDriver().findElement(By.id("search_result_error")).isDisplayed()) {
+            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\successBooking.png"));
             test.fail("Itinerary order was unsuccessful");
             Assert.fail();
         }else{
