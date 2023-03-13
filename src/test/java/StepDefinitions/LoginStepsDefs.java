@@ -7,9 +7,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class LoginStepsDefs extends Constants {
@@ -47,16 +52,17 @@ public class LoginStepsDefs extends Constants {
     }
 
     @Then("a user has login successfully")
-    public void aUserHasLoginSuccessfully() throws InterruptedException {
+    public void aUserHasLoginSuccessfully() throws InterruptedException, IOException {
         Thread.sleep(3000);
         String welcomeMsg = getDriver().findElement(By.id("username_show")).getAttribute("value");
         System.out.println(welcomeMsg);
         if (!getDriver().findElement(By.id("username_show")).isDisplayed()){
-
-            test.fail("Login unsuccessful!");
+            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\unsuccessfulLogin.png"));
+            test.fail("Login was unsuccessful!");
             Assert.fail();
         }else{
-            test.pass("Login successful!");
+            test.pass("Login was successful!");
         }
         extent.flush();
     }

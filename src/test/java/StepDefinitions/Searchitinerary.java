@@ -17,28 +17,37 @@ public class Searchitinerary {
     ExtentReports extent;
     ExtentTest test;
     @And("a user clicks on search hotel link")
-    public void aUserClicksOnSearchHotelLink() {
+    public void aUserClicksOnSearchHotelLink() throws IOException {
 
         ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\SearchItinerary.html");
         extent = new ExtentReports();
         extent.attachReporter(spark);
         test = extent.createTest("Search_Itinerary");
 
-        Actions a = new Actions(Constants.getDriver());
-        WebElement ordNum = Constants.getDriver().findElement(By.id("order_no"));
-        a.moveToElement(ordNum).click();
-        a.keyDown(Keys.CONTROL).sendKeys("a","c");
+        if(Constants.getDriver().findElement(By.id("order_no")).isDisplayed()){
+            Actions a = new Actions(Constants.getDriver());
+            WebElement ordNum = Constants.getDriver().findElement(By.id("order_no"));
+            a.moveToElement(ordNum).click();
+            a.keyDown(Keys.CONTROL).sendKeys("a","c");
 
-        a.keyUp(Keys.CONTROL);
-        a.build().perform();
+            a.keyUp(Keys.CONTROL);
+            a.build().perform();
 
-        Constants.getDriver().findElement(By.id("my_itinerary")).click();
+            Constants.getDriver().findElement(By.id("my_itinerary")).click();
 
-        WebElement ordId = Constants.getDriver().findElement(By.id("order_id_text"));
-        a.moveToElement(ordId).click();
-        a.keyDown(Keys.CONTROL).sendKeys("v");
-        a.keyUp(Keys.CONTROL);
-        a.build().perform();
+            WebElement ordId = Constants.getDriver().findElement(By.id("order_id_text"));
+            a.moveToElement(ordId).click();
+            a.keyDown(Keys.CONTROL).sendKeys("v");
+            a.keyUp(Keys.CONTROL);
+            a.build().perform();
+            test.pass("Order numbers was successfully found");
+        }else {
+            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\OrderNumNotFound.png"));
+            test.pass("Order number was not found!");
+            Constants.getDriver().quit();
+        }
+
     }
 
     @And("a user enter order number and click on the go button")

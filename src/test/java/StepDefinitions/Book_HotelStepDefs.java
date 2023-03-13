@@ -21,6 +21,7 @@ import java.util.List;
 
 public class Book_HotelStepDefs {
 
+    public  static String cardNum;
     ExtentReports extent;
     ExtentTest test;
 
@@ -70,12 +71,10 @@ public class Book_HotelStepDefs {
         if (!Constants.getDriver().findElement(By.xpath("//*[@id='select_form']/table/tbody/tr[1]/td")).isDisplayed()) {
             File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\unsuccessSearch.png"));
-            test.fail("Search unsuccessful!");
+            test.fail("Hotel search was unsuccessful!");
             Assert.fail();
         } else {
-            test.pass("Hotel search successful");
-            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\successSearch.png"));
+            test.pass("Hotel search was successful");
         }
 
         Thread.sleep(2000);
@@ -85,12 +84,10 @@ public class Book_HotelStepDefs {
         if (!Constants.getDriver().findElement(By.xpath("//*[@id='book_hotel_form']/table/tbody/tr[2]/td")).isDisplayed()) {
             File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\unsuccessSelection.png"));
-            test.fail("Hotel selected unsuccessfully!");
+            test.fail("Hotel was not selected successfully!");
             Assert.fail();
         } else {
-            test.pass("Hotel selected successfully!");
-            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\successSelection.png"));
+            test.pass("Hotel was selected successfully!");
         }
     }
 
@@ -100,6 +97,7 @@ public class Book_HotelStepDefs {
         Constants.getDriver().findElement(By.id("first_name")).sendKeys(pFirstname);
         Constants.getDriver().findElement(By.id("last_name")).sendKeys(pLastname);
         Constants.getDriver().findElement(By.id("address")).sendKeys(pBill);
+        cardNum = pCard_no;
         Constants.getDriver().findElement(By.id("cc_num")).sendKeys(pCard_no);
 
 //      Select the card type, expiry month and year
@@ -120,29 +118,25 @@ public class Book_HotelStepDefs {
         Constants.getDriver().findElement(By.id("book_now")).click();
     }
 
-    @Then("the hotel was booked successfully")
+    @Then("the hotel was booked successfully and unsuccessful booking")
     public void theHotelWasBookedSuccessfully() throws IOException {
 
         WebDriverWait objWait = new WebDriverWait(Constants.getDriver(), 120);
-        objWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("order_no")));
 
-        if (Constants.getDriver().findElement(By.id("cc_num_span")).isDisplayed()) {
+        if (cardNum.length() < 16) {
+            objWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cc_num_span")));
             Constants.getDriver().manage().window().fullscreen();
             File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\unsuccessBooking.png"));
             Constants.getDriver().close();
-            test.pass("Hotel booking unsuccesfully!");
-            extent.flush();
-            Constants.getDriver().close();
+            test.pass("Hotel was not booked successfully!");
         } else {
-            Constants.getDriver().manage().window().fullscreen();
-            File src = ((TakesScreenshot) Constants.getDriver()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src, new File("C:\\Users\\Sechaba.Chabedi\\Desktop\\BDD_Training\\BDD_Exercise\\Reports\\successBooking.png"));
-            test.pass("Hotel was booked successfully");
+            if(Constants.getDriver().findElement(By.id("order_no")).isDisplayed()){
+                test.pass("Hotel was booked successfully");
+            }
         }
         extent.flush();
         System.out.println(Constants.getDriver().findElement(By.id("order_no")).getText());
-        Constants.getDriver().close();
     }
 }
 

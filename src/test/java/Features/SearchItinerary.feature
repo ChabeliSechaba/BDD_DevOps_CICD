@@ -14,7 +14,7 @@ Feature:Search
   Scenario: Search hotel was booked successfully
     Given a user fill in the booking form
     And a user enters "Mister", "Alibaba", "1236 Alostro Street, Tshwane, Pitori, 0001", "1245451214549126", "124"
-    Then the hotel was booked successfully
+    Then the hotel was booked successfully and unsuccessful booking
     And a user clicks on search hotel link
     And a user enter order number and click on the go button
     Then the search is successful

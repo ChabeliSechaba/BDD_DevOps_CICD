@@ -8,12 +8,11 @@ Feature:Booking
     And a user enter "AkinAfrika" and "0G5C0D"
     And a user clicks the login button
     Then a user has login successfully
-
-
-  Scenario Outline: Book Hotel successfully
+    
+  Scenario Outline: Book Hotel successfully and unsuccessful booking
     Given a user fill in the booking form
     And a user enters "<firstname>", "<lastname>", "<bill-address>", "<card-number>", "<cvv-number>"
-    Then the hotel was booked successfully
+    Then the hotel was booked successfully and unsuccessful booking
 
     Examples:
       | firstname | lastname | bill-address                                           | card-number      | cvv-number |
